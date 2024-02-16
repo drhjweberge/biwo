@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<?php $version="0.0.6";?>
+<?php $version="0.0.6";
+// Author Dr. H.-J. Weber
+?>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

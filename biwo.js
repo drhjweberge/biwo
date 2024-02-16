@@ -312,3 +312,4 @@ function wAlert(msg)
   $("dgmessage").innerHTML=msg.replace(/\n/g,"<br>");
   $("dgmodal").style.display="block";
 }
+

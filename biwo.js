@@ -35,12 +35,13 @@ var tt=
   "l_help":["Find the word with five letters!\n It is a word that appears anywhere in the bible, can also be a place or name.\n"+
             "After completing the five letters press &lt;ENTER> or tip or click on the keyboard enter key (bottom right).\n"+
             "If a letter is not present in the word, the background remains white and the keyboard letter is disabled.\n"+
-            "Otherwise the letter is marked yellow if it is at the wrong position or blue if it is at the correct position. Not existing words are not rejected.",
+            "Otherwise the letter is marked yellow if it is at the wrong position or blue if it is at the correct position.\nNot existing words are not rejected.\n"+
+            "The solution must be found within 1 hour.",
             "Errate ein Wort mit fünf Buchstaben, das in der Bibel vorkommt!\n Es muss sinnvoll sein, kann auch ein Name oder Ort sein.\n"+
             "Wenn die fünf Buchstaben eingegeben sind (Tastatur, Maus oder Antippen), die &lt;Enter>-Taste drücken bzw. auf das Enter-Symbol unten rechts klicken oder tippen.\n"+
             "Kommt ein Buchstabe nicht vor, bleibt der Hintergrund weiß und dieser Buchstabe wird in der Tastatur gesperrt.\n"+
             "Kommt er vor, ist aber nicht an der richtigen Stelle, wird er gelb markiert. Ist er an der richtigen Stelle, ist die Markierung blau.\n"+
-            "Nicht existierende Wörter werden nicht zurückgewiesen!"]
+            "Nicht existierende Wörter werden nicht zurückgewiesen!\nDas Lösungswort ist eine Stunde gültig."]
 }
 
 function $(id) {return document.getElementById(id);}
@@ -312,4 +313,3 @@ function wAlert(msg)
   $("dgmessage").innerHTML=msg.replace(/\n/g,"<br>");
   $("dgmodal").style.display="block";
 }
-

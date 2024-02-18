@@ -1,6 +1,6 @@
 <?php
 $dbname="biwo.dat";
-$maxtime=30;//3600;                                                     // max time 1 h
+$maxtime=3600;                                                     // max time 1 h
 $actions=["init","check","close"];
 extract($_GET);
 $l=isset($language)?$language:0;

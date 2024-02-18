@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<?php $version="0.0.6";
+<?php $version="0.0.7";
 // Author Dr. H.-J. Weber
-// 16.02.2024
+// programmed 14.02.2024
+// Last update 16.02.2024
 ?>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 <style>
-  body {font-family:sans-serif,helvetica,arial;box-sizing: border-box;}
-  #try {width:350px;height:430px;padding:10px;border:black solid 1px;display:grid;grid:auto/auto auto auto auto auto;grid-gap:15px;}
-  #keys {width:350px;height:130px;padding:10px 10px 0px 10px;border-right:1px solid black;border-left:1px solid black;display:grid;grid:40px 40px 40px auto/auto auto auto auto auto auto auto auto auto auto;grid-gap:5px;}
-  #foot {width:350px;padding:10px;border-right:1px solid black;border-left:1px solid black;border-bottom:1px solid black;}
+  body {font-family:sans-serif,helvetica,arial;box-sizing: border-box;background-color:#aaa;}
+  #try {width:350px;height:430px;padding:10px;border:black solid 1px;display:grid;grid:auto/auto auto auto auto auto;grid-gap:15px;background-color:#777}
+  #keys {width:350px;height:130px;padding:10px 10px 0px 10px;border-right:1px solid black;border-left:1px solid black;display:grid;grid:40px 40px 40px auto/auto auto auto auto auto auto auto auto auto auto;grid-gap:5px;background-color:#bbb;}
+  #foot {width:350px;padding:10px;border-right:1px solid black;border-left:1px solid black;border-bottom:1px solid black;background-color:#bbb}
   #bthelp {width:50px;}
   #footright {float:right;}
   #lversion {font-size:6pt;}
@@ -24,7 +25,7 @@
 <title data-lkey="l_biwo"></title>
 </head>
 <body onload="init(1)" onkeydown="keyDown(event)">
-<h1 data-lkey="l_biwo" style="display:inline-block;"></h1>&#160;&#160;&#160;&#160;<img src="fl_e.png" id="imen" onclick="changeLanguage(0)">&#160;&#160;<img src="fl_d.png" id="imge" onclick="changeLanguage(1)">
+<h1 data-lkey="l_biwo" style="display:inline-block;"></h1>&#160;&#160;&#160;&#160;<img src="fl_e.svg" id="imen" onclick="changeLanguage(0)">&#160;&#160;<img src="fl_d.svg" id="imge" onclick="changeLanguage(1)">
 <div id="try">
 <?php
   for ($r=0;$r<6;$r++)

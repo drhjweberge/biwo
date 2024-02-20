@@ -2,7 +2,9 @@
 <?php $version="0.0.7";
 // Author Dr. H.-J. Weber
 // programmed 14.02.2024
-// Last update 16.02.2024
+// Last update 19.02.2024
+$counter=file_exists("counter.txt")?intVal(file_get_contents("counter.txt")):0;
+file_put_contents("counter.txt",($counter+1));
 ?>
 <html>
 <head>

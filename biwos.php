@@ -1,31 +1,32 @@
 <?php
 $dbname="biwo.dat";
-$maxtime=3600;                                                     // max time 1 h
-$actions=["init","check","close"];
+$cfile="counter.txt";
+$maxtime=3600;                                                           // max time 1 h
+$actions=["init","check","close","getcounts"];
 extract($_GET);
 $l=isset($language)?$language:0;
 $action=isset($action)?$action:"init";
 $ti=time();
-$token=isset($token)?$token:hash("SHA256",$ti);                    // extract or create unique token
+$token=isset($token)?$token:hash("SHA256",$ti);                          // extract or create unique token
 $res=['result'=>'error','error'=>"no valid action"];
 if (in_array($action,$actions))
 {
   $db=file_exists($dbname)?json_decode(file_get_contents($dbname),true):[];
   foreach($db as $k=>$d) 
-    if (($ti-$d['time'])>$maxtime) unset($db[$k]);                 // delete old records
+    if (($ti-$d['time'])>$maxtime) unset($db[$k]);                       // delete old records
 
   switch($action)
   {
     case "init":
     {
-      $fn=$l==0?"wordlist_en.txt":"wordlist_ge.txt";               // get the language wordlist
+      $fn=$l==0?"wordlist_en.txt":"wordlist_ge.txt";                     // get the language wordlist
       $wl=[];
       $word="";
       if (file_exists($fn)) $wl=json_decode(file_get_contents($fn),true);
-      if (count($wl)>2) $word=$wl[rand(0,count($wl)-1)];           // get a random word
-      $db[$token]=['time'=>$ti,'word'=>$word];                     // store time and solution
-      $res=['result'=>"ok",'error'=>"",
-            'token'=>$token,'time'=>$ti];                          // create result record
+      if (count($wl)>2) $word=$wl[rand(0,count($wl)-1)];                 // get a random word
+      $db[$token]=['time'=>$ti,'word'=>$word];                           // store time and solution
+      increaseCounter();
+      $res=['result'=>"ok",'error'=>"",'token'=>$token,'time'=>$ti];     // create result record
       break;
     }
 
@@ -89,9 +90,22 @@ if (in_array($action,$actions))
       $res=['result'=>'ok','error'=>""];
       break;
     }
+
+    case "getcounts":
+    {
+      $n=file_get_contents($cfile);
+      $res['counts']=intval($n);
+    }
   }
   file_put_contents($dbname,json_encode($db));                       // sava data
 }
 header("Content-Type: application/json");
 echo json_encode($res);
+
+function increaseCounter()
+{
+  global $cfile;
+  $counter=file_exists($cfile)?intVal(file_get_contents($cfile)):0;  // increase counter
+  file_put_contents($cfile,($counter+1));
+}
 ?>

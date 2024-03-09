@@ -283,6 +283,20 @@ function doKey(key)
   }
 }
 
+async function showC()
+{
+  if ($("lversion").innerHTML.charAt(0)!="V")
+  {
+    $("lversion").innerHTML="V "+$("version").value;
+  }
+  else
+  {
+    var pr=await fetch(biwosURL+"?action=getcounts");
+    var res=await pr.json();
+      if (res.counts) $("lversion").innerHTML=res.counts;
+  }
+}
+
 function help()
 {
   wAlert(t("l_help"));
@@ -299,8 +313,8 @@ function wConfirm(msg,ok,cancel)
 {
   $("btcancel").style.display="";
   $("btok").style.display="";
-  $("btcancel").addEventListener("click",()=>{closeDg();cancel!=null?cancel():freturn();});
-  $("btok").addEventListener("click",()=>{closeDg();ok();});
+  $("btcancel").addEventListener("click",function wCancel(){this.removeEventListener("click",wCancel);closeDg();cancel!=null?cancel():freturn();});
+  $("btok").addEventListener("click",function wOk(){this.removeEventListener("click",wOk);closeDg();ok();});
   $("dgmessage").innerHTML=msg.replace(/\n/g,"<br>");
   $("dgmodal").style.display="block";
 }
@@ -309,7 +323,7 @@ function wAlert(msg)
 {
   $("btcancel").style.display="none"
   $("btok").style.display="";
-  $("btok").addEventListener("click",closeDg);
+  $("btok").addEventListener("click",function wAl(){this.removeEventListener("click",wAl);closeDg();});
   $("dgmessage").innerHTML=msg.replace(/\n/g,"<br>");
   $("dgmodal").style.display="block";
 }
